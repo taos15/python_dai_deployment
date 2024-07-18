@@ -43,4 +43,4 @@ if __name__ == "__main__":
     single_obs_df = pd.DataFrame(observation)
 
     print(predict_mushroom(single_obs_df),
-          type(predict_mushroom(single_obs_df)))
+        type(predict_mushroom(single_obs_df)))
