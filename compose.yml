@@ -1,0 +1,23 @@
+services:
+  streamlit_mvp: # container name
+    # image: ${IMAGE:?err} # if pulling the image
+    build: # use the build instead of image when builing from source code
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME:?err} # Set the name in the .env file
+    env_file:
+      - ./.env
+    # volumes: # uncomment if you want to mount the app's directory
+    #   - ./data:${CONTAINER_DIR} # set the container's app folder int the .env
+    ports:
+      - ${PORTE:?err}:${PORTI:?err} # set ports in the .env
+    networks:
+      - galvanize_dai 
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+
+networks:
+  galvanize_dai:
+    driver: bridge
+    external: true
